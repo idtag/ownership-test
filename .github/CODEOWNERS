@@ -1,2 +1,8 @@
 # global owner
 * @idtag
+
+* team 1 owner
+/team_1 @darktag
+
+* team 2 owner
+/team_2 @idarktag
