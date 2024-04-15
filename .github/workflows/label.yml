@@ -18,9 +18,5 @@ jobs:
 
     steps:
     - uses: actions/labeler@v5
-      with:
-        repo-token: '${{ secrets.GITHUB_TOKEN }}'
-
-    - id: comment-team1
-      if: contains(steps.label-the-PR.outputs.all-labels, 'TEAM1')
-      run: gh pr comment 'This PR touched files owned by @idtag'
+    - if: contains(steps.label-the-PR.outputs.new-labels, 'TEAM1')
+      run: gh pr comment --body "This PR touched files owned by @idtag"
