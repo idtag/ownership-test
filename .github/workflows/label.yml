@@ -19,11 +19,11 @@ jobs:
       - uses: actions/labeler@v5
       
   comment:
-    needs: label
     runs-on: ubuntu-latest
+    needs: label
     steps:
       - id: comment-TEAM1
-        if: contains(jobs.label.outputs.new-labels, 'TEAM1')
+        if: contains(needs.jobs.label.outputs.new-labels, 'TEAM1')
         uses: actions/github-script@v6
         with:
           script: |
