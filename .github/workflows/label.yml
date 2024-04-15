@@ -23,7 +23,7 @@ jobs:
 
     - id: comment-team1
       if: contains(steps.label-the-PR.outputs.all-labels, 'TEAM1')
-      run: gh issue comment "$NUMBER" --body "$BODY"
+      run: gh pr comment "$NUMBER" --body "$BODY"
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GH_REPO: ${{ github.repository }}
