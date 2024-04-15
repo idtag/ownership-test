@@ -13,7 +13,6 @@ jobs:
       
     steps:
       - id: comment-TEAM1
-        if: contains(needs.jobs.label.outputs.new-labels, 'TEAM1')
         run: gh pr comment "$NUMBER" --body "$BODY"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
