@@ -20,7 +20,7 @@ jobs:
         uses: actions/labeler@v5
       - uses: actions/checkout@v4
       - id: comment-TEAM1
-        if: contains(steps.label-PR.new-labels, 'TEAM1')
+        if: contains(steps.label-PR.all-labels, 'TEAM1')
         uses: actions/github-script@v6
         with:
           script: |
