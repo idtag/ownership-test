@@ -16,5 +16,6 @@ jobs:
       - id: comment-TEAM1
         run: gh pr comment --body "$BODY"
         env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BODY: >
             This issue is available for anyone to work on.
