@@ -23,4 +23,4 @@ jobs:
 
     - id: comment-team1
       if: contains(steps.label-the-PR.outputs.all-labels, 'TEAM1')
-      run: gh pr comment --body 'This PR touched files owned by @idtag'
+      run: gh pr comment 'This PR touched files owned by @idtag'
