@@ -17,6 +17,7 @@ jobs:
 
     steps:
       - uses: actions/labeler@v5
+      - run: echo "@idtag owns this"
       
   comment:
     runs-on: ubuntu-latest
