@@ -10,13 +10,26 @@ on: [pull_request_target]
 
 jobs:
   label:
-
     runs-on: ubuntu-latest
     permissions:
       contents: read
       pull-requests: write
 
     steps:
-    - uses: actions/labeler@v5
-    - if: contains(steps.label-the-PR.outputs.new-labels, 'TEAM1')
-      run: gh pr comment --body "This PR touched files owned by @idtag"
+      - uses: actions/labeler@v5
+      
+  comment:
+    needs: label
+    runs-on: ubuntu-latest
+    steps:
+      - id: comment-TEAM1
+        if: contains(jobs.label.outputs.new-labels, 'TEAM1')
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: 'Thanks for reporting!'
+            })
