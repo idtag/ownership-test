@@ -8,13 +8,16 @@ jobs:
     if: github.event.label.name == 'TEAM1'
     runs-on: ubuntu-latest
     permissions:
-      issues: write
+      contents: read
+      pull-requests: write
+      
     steps:
-      - name: Add comment
+      - id: comment-TEAM1
+        if: contains(needs.jobs.label.outputs.new-labels, 'TEAM1')
         run: gh pr comment "$NUMBER" --body "$BODY"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_REPO: ${{ github.repository }}
-          NUMBER: ${{ github.event.issue.number }}
+          NUMBER: ${{ github.event.pr.number }}
           BODY: >
-            This PR touched files owned by @idtag
+            This issue is available for anyone to work on.
