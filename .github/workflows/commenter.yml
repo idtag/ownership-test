@@ -14,10 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - id: comment-TEAM1
-        run: gh pr comment "$NUMBER" --body "$BODY"
+        run: gh pr comment --body "$BODY"
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GH_REPO: ${{ github.repository }}
-          NUMBER: ${{ github.event.pr.number }}
           BODY: >
             This issue is available for anyone to work on.
