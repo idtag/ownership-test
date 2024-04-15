@@ -16,23 +16,35 @@ jobs:
       pull-requests: write
 
     steps:
-      - uses: actions/labeler@v5
-      - run: echo "@idtag owns this"
-      
-  comment:
-    runs-on: ubuntu-latest
-    needs: label
-    permissions:
-      contents: read
-      pull-requests: write
-      
-    steps:
+      - id: label-PR
+        uses: actions/labeler@v5
+      - uses: actions/checkout@v4
       - id: comment-TEAM1
-        if: contains(needs.jobs.label.outputs.new-labels, 'TEAM1')
-        run: gh pr comment "$NUMBER" --body "$BODY"
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GH_REPO: ${{ github.repository }}
-          NUMBER: ${{ github.event.pr.number }}
-          BODY: >
-            This issue is available for anyone to work on.
+        if: contains(steps.label-the-PR.new-labels, 'TEAM1')
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '@idtag owns this joint!'
+            })
+      
+  # comment:
+  #   runs-on: ubuntu-latest
+  #   needs: label
+  #   permissions:
+  #     contents: read
+  #     pull-requests: write
+      
+  #   steps:
+  #     - id: comment-TEAM1
+  #       if: contains(needs.jobs.label.outputs.new-labels, 'TEAM1')
+  #       run: gh pr comment "$NUMBER" --body "$BODY"
+  #       env:
+  #         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #         GH_REPO: ${{ github.repository }}
+  #         NUMBER: ${{ github.event.pr.number }}
+  #         BODY: >
+  #           This issue is available for anyone to work on.
