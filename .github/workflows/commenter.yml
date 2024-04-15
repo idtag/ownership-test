@@ -13,9 +13,12 @@ jobs:
       
     steps:
       - uses: actions/checkout@v4
-      - id: comment-TEAM1
-        run: gh pr comment --body "$BODY"
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BODY: >
-            This issue is available for anyone to work on.
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: 'Thanks for reporting!'
+            })
