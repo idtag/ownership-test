@@ -21,7 +21,7 @@ jobs:
       with:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
 
-    - id: run-frontend-tests
+    - id: comment-team1
       if: contains(steps.label-the-PR.outputs.all-labels, 'TEAM1')
       run: gh issue comment "$NUMBER" --body "$BODY"
       env:
