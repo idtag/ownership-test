@@ -20,3 +20,13 @@ jobs:
     - uses: actions/labeler@v5
       with:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
+
+    - id: run-frontend-tests
+      if: contains(steps.label-the-PR.outputs.all-labels, 'TEAM1')
+      run: gh issue comment "$NUMBER" --body "$BODY"
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GH_REPO: ${{ github.repository }}
+        NUMBER: ${{ github.event.issue.number }}
+        BODY: >
+            This PR touched files owned by @idtag
