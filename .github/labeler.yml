@@ -3,5 +3,5 @@ TEAM1:
       - changed-files:
           - any-glob-to-any-file: 
             - 'team_1/*'
-            - 'a.txt'
+            - '**/a.txt'
             - 'test.txt'
