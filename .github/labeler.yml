@@ -1,9 +1,4 @@
 TEAM1:
-- any:
-  - changed-files:
-    - any-glob-to-any-file: 'team_1/*'
-
-TEAM2:
-- any:
-  - changed-files:
-    - any-glob-to-any-file: '**/sub/**'
+  - any:
+      - changed-files:
+          - any-glob-to-any-file: "team_1/*"
