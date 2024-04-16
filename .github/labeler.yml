@@ -4,3 +4,4 @@ TEAM1:
           - any-glob-to-any-file: 
             - team_1/*
             - **/a.txt
+            - test.txt
