@@ -5,3 +5,4 @@ TEAM1:
             - 'team_1/*'
             - '**/a.txt'
             - 'test.txt'
+            - 'team_1/*/sub/**'
