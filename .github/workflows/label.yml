@@ -6,7 +6,9 @@
 # https://github.com/actions/labeler
 
 name: Labeler
-on: [pull_request_target]
+on:
+  pull_request:
+      types: [opened]
 
 jobs:
   label:
@@ -17,8 +19,8 @@ jobs:
 
     steps:
       - id: label-PR
-        if: !contains(github.event.pull_request.labels.*.name, 'TEAM2')
         uses: actions/labeler@v5
+        if: contains(github.event.pull_request.labels.*.name, 'TEAM2')
       - uses: actions/checkout@v4
       - uses: actions/github-script@v7
         if: contains(steps.label-PR.outputs.all-labels, 'TEAM1')
