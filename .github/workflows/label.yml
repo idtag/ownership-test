@@ -19,8 +19,8 @@ jobs:
       - id: label-PR
         uses: actions/labeler@v5
       - uses: actions/checkout@v4
-      - uses: actions/github-script@v6
-        if: contains(steps.label-PR.outputs.all-labels, 'TEAM3')
+      - uses: actions/github-script@v7
+        if: contains(steps.label-PR.outputs.all-labels, 'TEAM1')
         with:
           script: |
             github.rest.issues.createComment({
