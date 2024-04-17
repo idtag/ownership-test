@@ -18,7 +18,7 @@ jobs:
       pull-requests: write
 
     steps:
-      - run: echo ${{ github.event.comment.body }}
+      - run: echo ${{ github.event.pull_request.comment.body }}
       - id: label-PR
         if: ${{!contains(github.event.pull_request.labels.*.name, 'TEAM1')}}
         uses: actions/labeler@v5
