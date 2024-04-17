@@ -8,7 +8,7 @@
 name: Labeler
 on:
   pull_request_target:
-    types: [ready_for_review]
+    types: [review_requested]
 
 jobs:
   label:
