@@ -17,9 +17,9 @@ jobs:
       contents: read
       pull-requests: write
 
+    if: ${{!github.event.pull_request.draft}}
     steps:
       - id: label-PR
-        if: ${{!github.event.pull_request.draft}}
         uses: actions/labeler@v5
       - uses: actions/checkout@v4
       - uses: actions/github-script@v7
