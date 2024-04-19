@@ -31,7 +31,8 @@ jobs:
               repo: context.repo.repo,
             })
       - run: echo '$comments'
-      - if: ${{contains(steps.label-PR.outputs.new-labels, 'TEAM1')}}
+      - uses: actions/github-script@v7
+        if: ${{contains(steps.label-PR.outputs.new-labels, 'TEAM1')}}
         with:
           script: |
             github.rest.issues.createComment({
