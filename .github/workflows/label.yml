@@ -19,11 +19,11 @@ jobs:
 
     if: ${{!github.event.pull_request.draft}}
     steps:
-      - id: label-PR
-        name: 'Label PR'
-        uses: actions/labeler@v5
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # - id: label-PR
+      #   name: 'Label PR'
+      #   uses: actions/labeler@v5
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: 'Checkout'
         uses: actions/checkout@v4
       # - id: list-comments
