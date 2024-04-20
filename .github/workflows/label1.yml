@@ -21,5 +21,3 @@ jobs:
       - id: label-PR
         name: 'Label PR'
         uses: actions/labeler@v5
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
