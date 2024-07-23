@@ -22,23 +22,9 @@ jobs:
       - id: label-PR
         name: 'Label PR'
         uses: actions/labeler@v5
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: 'Checkout'
         uses: actions/checkout@v4
-      # - id: list-comments
-      #   uses: actions/github-script@v7
-      #   with: 
-      #     script: |
-      #       const {data: comments} = await github.rest.issues.listComments({
-      #         issue_number: context.issue.number,
-      #         owner: context.repo.owner,
-      #         repo: context.repo.repo,
-      #       })
-      #       return comments
-      # - run: echo ${{steps.list-comments}}
       - name: 'Comment PR'
-        # if: ${{contains(steps.label-PR.outputs.new-labels, 'TEAM1')}}
         uses: actions/github-script@v7
         with:
           script: |
@@ -46,7 +32,5 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: '@darktag owns this TEAM1!'
+              body: '${{ vars.DARKO }} owns this TEAM1!'
             })
-        # env:
-        #   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
